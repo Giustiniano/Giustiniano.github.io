@@ -1,1 +1,1 @@
-const model = tf.loadLayersModel('model/model.json').then(function(model){alert("model loaded")})
+const model = tf.loadLayersModel('model/model.json').then(function(model){console.log("model loaded")})
