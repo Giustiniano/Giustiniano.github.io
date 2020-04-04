@@ -70,10 +70,7 @@ window.addEventListener('load', function () {
 	show_btn()
   }
   
-  function detectDigit_onclick(){
-	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667)
-	  console.log("detect digit pressed")
-  }
+
   
   
   function show_btn(){
@@ -84,3 +81,8 @@ window.addEventListener('load', function () {
 
   init();
 }, false); }
+ 
+ function detectDigit_onclick(){
+	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667)
+	  console.log("detect digit pressed")
+  }
