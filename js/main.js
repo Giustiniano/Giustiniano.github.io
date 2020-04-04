@@ -71,7 +71,8 @@ window.addEventListener('load', function () {
   }
   
   function detectDigit(){
-	console.log("detect digit pressed")
+	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667)
+	  console.log("detect digit pressed")
   }
   
   
