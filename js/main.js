@@ -67,7 +67,18 @@ window.addEventListener('load', function () {
   
   function ev_mouseup(ev){
 	started = false;
+	show_btn()
   }
+  
+  function detectDigit(){
+	console.log("detect digit pressed")
+  }
+  
+  
+  function show_btn(){
+	document.getElementById("detectDigit").style.display = "block"
+  }
+  
   
 
   init();
