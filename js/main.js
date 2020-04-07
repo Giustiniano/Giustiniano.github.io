@@ -89,8 +89,15 @@ window.addEventListener('load', function () {
   init();
 }, false); }
  
- function detectDigit_onclick(){	  
-	  document.getElementById('imageView').getContext("2d").drawImage(get_lowest_x(coords_array), get_highest_y(coords_array), get_highest_x(coords_array), get_highest_y(coords_array));
+ function detectDigit_onclick(){
+	  width = 0;
+	  if (get_highest_x(coords_array) > get_highest_y(coords_array)){
+		width = get_highest_x(coords_array)		
+	  }
+	  else {
+		width = get_highest_y(coords_array)
+	  }
+	  document.getElementById('imageView').getContext("2d").drawImage(get_lowest_x(coords_array), get_highest_y(coords_array), get_highest_x(coords_array), get_highest_y(coords_array), width, width);
 	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667);
 	  console.log("detect digit pressed");
 	  
