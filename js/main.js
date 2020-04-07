@@ -97,7 +97,7 @@ window.addEventListener('load', function () {
 	  else {
 		width = get_highest_y(coords_array)
 	  }
-	  document.getElementById('imageView').getContext("2d").drawImage(
+	  document.getElementById('crop').getContext("2d").drawImage(
 	  document.getElementById('imageView'),
 	  get_lowest_x(coords_array), 
 	  get_highest_y(coords_array),
