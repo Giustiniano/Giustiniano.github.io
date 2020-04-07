@@ -103,8 +103,8 @@ window.addEventListener('load', function () {
 	  get_highest_y(coords_array),
 	  width, 
 	  width, 
-	  get_lowest_x(coords_array), 
-	  get_highest_y(coords_array),
+	  0,
+	  0,
 	  width,
 	  width)
 	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667);
