@@ -1,3 +1,4 @@
+x_array = [], y_array = []
 if(window.addEventListener) {
 window.addEventListener('load', function () {
   var canvas, context;
@@ -46,8 +47,10 @@ window.addEventListener('load', function () {
     // The event handler works like a drawing pencil which tracks the mouse 
     // movements. We start drawing a path made up of lines.
     if (started) {
-      context.lineTo(x, y);
-      context.stroke();
+		x_array.push(x);
+		y_array.push(y);
+		context.lineTo(x, y);
+		context.stroke();
     }
   }
   function ev_mousedown(ev){
@@ -62,27 +65,50 @@ window.addEventListener('load', function () {
       y = ev.offsetY;
     }
 	started = true;
-	context.moveTo(x,y)
+	x_array.push(x);
+	y_array.push(y);
+	context.moveTo(x,y);
   }
   
   function ev_mouseup(ev){
 	started = false;
-	show_btn()
-  }
-  
-
-  
+	show_btn();
+  } 
   
   function show_btn(){
-	document.getElementById("detectDigit").style.display = "block"
+	document.getElementById("detectDigit").style.display = "block";
   }
   
-  
-
   init();
 }, false); }
  
  function detectDigit_onclick(){
-	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667)
-	  console.log("detect digit pressed")
+	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667);
+	  console.log("detect digit pressed");
   }
+  function get_highest_value(arr){
+	  if(arr.length == 1){
+		return arr[0];
+	  }
+	  max = arr[0];
+	  for(i = 1; i<arr.length; i++){
+		if (arr[i]>max){
+			max = arr[i];
+		}
+	  }
+	  return max;
+  }
+  
+  function get_lowest_value(arr){
+	if(arr.length == 1){
+		return arr[0];
+	}
+	min = arr[0];
+	for(i=1;i<arr.length;i++){
+		if (arr[i]<min){
+			min = arr[i];
+		}
+	}
+	return min;
+  }
+  
