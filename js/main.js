@@ -90,24 +90,24 @@ window.addEventListener('load', function () {
 }, false); }
  
  function detectDigit_onclick(){
+	  context = document.getElementById('imageView').getContext("2d")
+	  
+	  //draw_bounding_box(coords_array)
+	  
 	  width = 0;
 	  if (get_highest_x(coords_array) > get_highest_y(coords_array)){
-		width = get_highest_x(coords_array)		
+		width = get_highest_x(coords_array) - get_lowest_x(coords_array)
 	  }
 	  else {
-		width = get_highest_y(coords_array)
+		width = get_highest_y(coords_array) - get_lowest_y(coords_array)
 	  }
-	  document.getElementById('crop').getContext("2d").drawImage(
-	  document.getElementById('imageView'),
-	  get_lowest_x(coords_array), 
-	  get_highest_y(coords_array),
-	  width, 
-	  width, 
-	  0,
-	  0,
-	  width,
-	  width)
-	  document.getElementById('imageView').getContext("2d").scale(0,0666666666666667, 0,0666666666666667);
+	  width = width + 10
+	  imagedata = context.getImageData(get_lowest_x(coords_array), get_lowest_y(coords_array),width, width)
+	  document.getElementById("croppedImage").width=width
+	  document.getElementById("croppedImage").height=width
+	  document.getElementById("croppedImage").getContext("2d").putImageData(imagedata, 0,0)
+	  document.getElementById("final").getContext("2d").drawImage(document.getElementById("croppedImage"), 0, 0, 28, 28);
+	 
 	  console.log("detect digit pressed");
 	  
 	  
@@ -129,13 +129,26 @@ window.addEventListener('load', function () {
 	if(arr.length == 1){
 		return arr[0];
 	}
-	min = arr[0][0];
+	min = arr[0];
 	for(i=1;i<arr.length;i++){
 		if (arr[i][0]<min[0]){
 			min = arr[i];
 		}
 	}
 	return min[0];
+  }
+  
+  function get_lowest_y(arr){
+	if(arr.length == 1){
+		return arr[1];
+	}
+	min = arr[0];
+	for(i=1;i<arr.length;i++){
+		if (arr[i][1]<min[1]){
+			min = arr[i];
+		}
+	}
+	return min[1];
   }
   
   function get_highest_y(arr){
@@ -162,6 +175,21 @@ window.addEventListener('load', function () {
 			max = arr[i]
 		}
 	}
-	return max[1]
+	return max[0]
+  }
+  
+  function draw_bounding_box(arr){
+	padding = 10  
+	context = document.getElementById('imageView').getContext("2d")
+	context.beginPath();
+	context.moveTo(get_lowest_x(arr)-padding, get_highest_y(arr)+padding);
+	context.lineTo(get_highest_x(arr)+padding, get_highest_y(arr) + padding);
+	context.stroke();
+	context.lineTo(get_highest_x(arr)+padding, get_lowest_y(arr)-padding);
+	context.stroke();
+	context.lineTo(get_lowest_x(arr)-padding, get_lowest_y(arr)-padding);
+	context.stroke();
+	context.lineTo(get_lowest_x(arr)-padding, get_highest_y(arr)+padding);
+	context.stroke();
   }
   
