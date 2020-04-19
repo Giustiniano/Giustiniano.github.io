@@ -101,13 +101,15 @@ window.addEventListener('load', function () {
 	  else {
 		width = get_highest_y(coords_array) - get_lowest_y(coords_array)
 	  }
+	  
 	  width = width + 10
 	  imagedata = context.getImageData(get_lowest_x(coords_array), get_lowest_y(coords_array),width, width)
 	  document.getElementById("croppedImage").width=width
 	  document.getElementById("croppedImage").height=width
 	  document.getElementById("croppedImage").getContext("2d").putImageData(imagedata, 0,0)
 	  document.getElementById("final").getContext("2d").drawImage(document.getElementById("croppedImage"), 0, 0, 28, 28);
-	 
+	  final_imagedata = document.getElementById("final").getContext("2d").getImageData(0,0,28,28)
+	  predict(final_imagedata).then(function(){console.log(this.predictions)})
 	  console.log("detect digit pressed");
 	  
 	  
@@ -192,4 +194,5 @@ window.addEventListener('load', function () {
 	context.lineTo(get_lowest_x(arr)-padding, get_highest_y(arr)+padding);
 	context.stroke();
   }
+ 
   
