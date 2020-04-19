@@ -5,7 +5,7 @@ const model = tf.loadLayersModel('model/model.json').then(function(model){consol
     await tf.tidy(() => {
 
       // Convert the canvas pixels to a Tensor of the matching shape
-      let img = tf.fromPixels(imageData, 1);
+      let img = tf.browser.fromPixels(imageData, 1);
       img = img.reshape([1, 28, 28, 1]);
       img = tf.cast(img, 'float32');
 
