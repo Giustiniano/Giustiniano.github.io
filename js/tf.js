@@ -1,4 +1,4 @@
-const model = tf.loadLayersModel('model/model.json').then(function(model){console.log("model loaded")})
+tf.loadLayersModel('model/model.json').then(function(model){console.log("model loaded"); this.model=model})
 
   async function predict(imageData) {
 
@@ -10,7 +10,7 @@ const model = tf.loadLayersModel('model/model.json').then(function(model){consol
       img = tf.cast(img, 'float32');
 
       // Make and format the predications
-      const output = model.predict(img)
+      const output = this.model.predict(img)
 
       // Save predictions on the component
       this.predictions = Array.from(output.dataSync()); 
